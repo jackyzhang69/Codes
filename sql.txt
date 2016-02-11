@@ -1,0 +1,13 @@
+CREATE TABLE Student
+(
+	Id INT NOT NULL PRIMARY KEY,
+	Name nvarchar(30) not null,
+	Age int not null,
+	Sex nvarchar(10)
+)
+
+insert into Student values (1, 'Jacky', 47,'Male')
+insert into Student values (2, 'Jackson', 17,'Male')
+insert into Student values (3, 'Dan', 6,'Male')
+insert into Student values (4, 'May', 44,'Female')
+insert into Student values (5, 'Ye', 45,'Male')

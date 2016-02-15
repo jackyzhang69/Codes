@@ -22,3 +22,36 @@ Console.WriteLine(doc.Form.XFA.GetFieldTemplate(names[0]).Attributes["x"].Value)
 Console.WriteLine(doc.Form.XFA.GetFieldTemplate(names[0]).Attributes["y"].Value);
 // Save the updated document
 doc.Save("c:/Filled_XFA.pdf");
+
+
+// Recursively iterate  to get all fields 
+document contains checkboxes as grouped fields and you need to recursively look into all the children of the group fields. Please see the following sample code which will help you get your desired result. This code recursively iterate through all the children of the group fields and list down the fields in a list.
+
+//open document
+Document pdfDocument = new Document("E:\\AP Data\\Demo.Pdf");
+ 
+foreach (Field formField in pdfDocument.Form)
+{
+    List<string> listFields = new List<string>();
+    getField(formField, ref listFields);
+  
+}
+ 
+
+//method to check all the fields
+public void getField(Field field,ref List<string> listFields)
+{
+  
+    if (field.IsGroup)
+    {
+        foreach (Field childField in field)
+        {
+            getField(childField,ref listFields);
+        }
+    }
+    else
+    {
+        listFields.Add(field.FullName);
+    }
+                            
+}

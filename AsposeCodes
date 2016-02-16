@@ -95,3 +95,15 @@ public void getField(Field field,ref List<string> listFields)
     }
                             
 }
+
+// Concatenate multiple pdf files to a new pdf file
+// Open the first document
+Document pdfDocument1 = new Document("input.pdf");
+// Open the second document
+Document pdfDocument2 = new Document("input2.pdf");
+
+// Add pages of second document to the first
+pdfDocument1.Pages.Add(pdfDocument2.Pages);
+
+// Save concatenated output file
+pdfDocument1.Save("output.pdf");

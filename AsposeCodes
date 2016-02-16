@@ -133,3 +133,41 @@ Console.WriteLine(page.GetPageRect(true).Width.ToString() + ":" + page.GetPageRe
 page.Rotate = Rotation.on90;
 // get page height and width information
 Console.WriteLine(page.GetPageRect(true).Width.ToString() + ":" + page.GetPageRect(true).Height);
+
+
+// set and get pdf file information : can be used to merge pdfs and work out the first page of index 
+// Open document
+Document pdfDocument = new Document("input.pdf");
+// Specify document information
+DocumentInfo docInfo = new DocumentInfo(pdfDocument);
+docInfo.Author ="Aspose";
+docInfo.CreationDate =DateTime.Now;
+docInfo.Keywords ="Aspose.Pdf, DOM, API";
+docInfo.ModDate =DateTime.Now;
+docInfo.Subject ="PDF Information";
+docInfo.Title ="Setting PDF Document Information";
+// Save output document
+pdfDocument.Save("output.pdf");
+
+//Open document
+Document pdfDocument = new Document("input.pdf");
+
+//Get document information
+DocumentInfo docInfo = pdfDocument.Info;
+
+//Show document information
+Console.WriteLine("Author: {0}", docInfo.Author);
+Console.WriteLine("Creation Date: {0}", docInfo.CreationDate);
+Console.WriteLine("Keywords: {0}", docInfo.Keywords);
+Console.WriteLine("Modify Date: {0}", docInfo.ModDate);
+Console.WriteLine("Subject: {0}", docInfo.Subject);
+Console.WriteLine("Title: {0}", docInfo.Title);
+
+//In order to access the value of a custom property, for example Trapped etc., in a PDF file, please try using following code snippet. Please note that Trapped property is a part of DocumentInfo structure.
+using (Document pdfDocument = new Document(@"c:\test.pdf"))
+{
+    if (pdfDocument.Info.Trapped == "True")
+    {
+        // Do something
+    }
+}

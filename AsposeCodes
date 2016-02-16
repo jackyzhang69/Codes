@@ -107,3 +107,29 @@ pdfDocument1.Pages.Add(pdfDocument2.Pages);
 
 // Save concatenated output file
 pdfDocument1.Save("output.pdf");
+
+
+// set page size 
+// Open a document
+Document pdfDocument = new Document("source.pdf");
+// Get page collection
+PageCollection pageCollection = pdfDocument.Pages;
+// Get particular page
+Page pdfPage = pageCollection[1];
+// Set the page size as A4 (11.7 x 8.3 in) and in Aspose.Pdf, 1 inch = 72 points
+// so A4 dimensions in points will be (842.4, 597.6)
+pdfPage.SetPageSize(597.6,842.4);
+// Save the updated document
+pdfDocument.Save("Updated.pdf");
+
+//get page size
+// load source PDF file
+Document pdfDocument = new Document("c:/pdftest/4831+EBDRTransactionAmountDiffersForm.pdf");
+//adds a blank page to pdf document
+Page page = pdfDocument.Pages.Count > 0 ? pdfDocument.Pages[1] : pdfDocument.Pages.Add();
+// get page height and width information
+Console.WriteLine(page.GetPageRect(true).Width.ToString() + ":" + page.GetPageRect(true).Height);
+// rotate page at 90 degree angle
+page.Rotate = Rotation.on90;
+// get page height and width information
+Console.WriteLine(page.GetPageRect(true).Width.ToString() + ":" + page.GetPageRect(true).Height);

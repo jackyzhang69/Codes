@@ -1,0 +1,31 @@
+// use a string to access class property (reflection) string name has the property's same name
+// can be used to dictionary which includes properties' names and then build another dictionary with key and value(of the property)
+
+
+static void Main(string[] args)
+        {
+            person p1 = new person();
+            p1.id = 1;
+            p1.First = "jacky";
+            p1.Last = "zhang";
+
+        
+           
+            object p2 = GetPropValue(p1, "First");
+            Console.WriteLine(p2.ToString());
+            Console.ReadKey();
+            
+        }
+
+        public static object GetPropValue(object src, string propName)
+        {
+            Console.WriteLine(src.GetType().ToString());
+            return src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+
+        protected class person 
+        {
+        public int id { get; set; }
+        public string First { get; set; }
+        public string Last { get; set; }
+        }
